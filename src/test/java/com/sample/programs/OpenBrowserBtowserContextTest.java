@@ -5,7 +5,7 @@ import org.junit.jupiter.api.*;
 
 import java.util.Arrays;
 
-public class OpenBrowserBtowserContextTest {
+public class OpenBrowserBrowserContextTest {
 
    private static Playwright playwright;
     private static Browser browser;
