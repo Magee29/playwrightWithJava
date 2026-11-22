@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 public class OpenBrowserBrowserContextTest {
 
-   private static Playwright playwright;
+    private static Playwright playwright;
     private static Browser browser;
     private static Page page;
     private static BrowserContext browserContext;
@@ -24,8 +24,8 @@ public class OpenBrowserBrowserContextTest {
     }
 
     @BeforeEach
-    void setUp(){
-        page= browser.newPage();
+    void setUp() {
+        page = browserContext.newPage();
     }
 
     @Test
@@ -35,6 +35,7 @@ public class OpenBrowserBrowserContextTest {
         System.out.println("title is - " + page.title());
         Assertions.assertTrue(page.title().contains("Practice"));
         page.locator("[placeholder='Search']").fill("Pliers");
+        page.getByPlaceholder("Search").fill("Pliers");
         page.locator("button:has-text('Search')").click();
         int cardCount = page.locator(".card").count();
         System.out.println("Card count is " + cardCount);
@@ -54,9 +55,15 @@ public class OpenBrowserBrowserContextTest {
 
     }
 
-    @AfterAll
-   public static void tearDown() {
+    @AfterEach
+    void tearDownTab() {
         page.close();
+    }
+
+    @AfterAll
+    public static void tearDown() {
+
+        browserContext.close();
         browser.close();
         playwright.close();
     }

@@ -52,12 +52,10 @@ public final class OpenBrowserWithOptionsTest {
         System.out.println("title is - " + page.title());
         Assertions.assertTrue(page.title().contains("Practice"));
         page.locator("[placeholder='Search']").fill("Pliers");
-        Thread.sleep(5000);
         page.locator("button:has-text('Search')").click();
-
         int cardCount = page.locator(".card").count();
         System.out.println("Card count is " + cardCount);
-        Thread.sleep(5000);
+
   
     }
 
