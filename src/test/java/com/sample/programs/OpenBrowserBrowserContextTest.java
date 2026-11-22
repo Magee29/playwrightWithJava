@@ -63,7 +63,7 @@ public class OpenBrowserBrowserContextTest {
     @AfterAll
     public static void tearDown() {
 
-        browserContext.close();
+
         browser.close();
         playwright.close();
     }

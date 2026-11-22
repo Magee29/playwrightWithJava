@@ -9,6 +9,7 @@ public class OpenBrowserTest {
 
     static Playwright playwright;
     static Browser browser;
+    BrowserContext browserContext;
     Page page;
 
 
@@ -26,7 +27,7 @@ public class OpenBrowserTest {
     void setUp() {
 
 
-        BrowserContext browserContext = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
+        browserContext = browser.newContext(new Browser.NewContextOptions().setViewportSize(null));
         page = browserContext.newPage();
         page.navigate("https://practicesoftwaretesting.com/");
     }
@@ -50,13 +51,15 @@ public class OpenBrowserTest {
     }
 
     @AfterEach
-    void tearDown() {
-        page.close();
+    void closeContext() {
+        if (browserContext != null) {
+            browserContext.close();   // closes pages belonging to this context too
+        }
     }
 
     @AfterAll
     public static void tearDownBrowser() {
-        browser.close();
-        playwright.close();
+        if (browser != null) browser.close();
+        if (playwright != null) playwright.close();
     }
 }
