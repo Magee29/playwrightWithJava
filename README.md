@@ -1,2 +1,2 @@
 # playwrightWithJava
-playwright project with java
+Playwright project with java
